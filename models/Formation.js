@@ -8,3 +8,4 @@ const formationSchema = mongoose.Schema({
 });
 
 module.exports = mongoose.model('Formation', formationSchema)
+
