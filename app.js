@@ -1,12 +1,13 @@
 const express = require('express');
 const cors = require('cors');
+require("dotenv").config();
 const mongoose = require('mongoose');
 const Header = require('./models/Header');
 const Formation = require('./models/Formation');
 const app = express()
 
 mongoose.connect(
-  "mongodb+srv://jazzy69:Shyrone59@cluster0.5rvch.mongodb.net/formationIT?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true}).then(()=> console.log("connextion à MongoDB réussie!")).catch(() => console.log("connexion a MongoDB échouée !")
+  `mongodb+srv://${process.env.NODE_LOGIN_MONGOOSE}:${process.env.NODE_PASSWORD_MONGOOSE}@cluster0.5rvch.mongodb.net/formationIT?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true}).then(()=> console.log("connextion à MongoDB réussie!")).catch(() => console.log("connexion a MongoDB échouée !")
 );
 
 app.use(cors());
