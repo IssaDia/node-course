@@ -4,7 +4,7 @@ const formationController = require('../controllers/formation');
 
 router.post("/", formationController.postFormation);
 
-router.get("/", formationController.getFormation);
+router.get("/:userId", formationController.getFormation);
 
 router.delete("/:id", formationController.deleteFormation);
 

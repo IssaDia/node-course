@@ -4,7 +4,7 @@ const experienceDevController = require('../controllers/experienceDev')
 
 router.post("/", experienceDevController.postExperienceDev);
 
-router.get("/", experienceDevController.getExperienceDev);
+router.get("/:userId", experienceDevController.getExperienceDev);
 
 router.delete("/:id", experienceDevController.deleteExperienceDev);
 

@@ -17,10 +17,11 @@ const headerSchema = mongoose.Schema({
     type: String,
     require: true,
   },
-  porfolio: {
+  portfolio: {
     type: String,
     require: true,
   },
+  userId: { type: String, required: true },
 });
 
 module.exports= mongoose.model('Header', headerSchema)

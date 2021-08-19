@@ -9,7 +9,9 @@ exports.postFormation = (req, res, next) => {
 };
 
 exports.getFormation = (req, res, next) => {
-  Formation.find().then((formations) => res.status(200).json(formations));
+  Formation.find({ userId: req.params.userId }).then((formations) =>
+    res.status(200).json(formations)
+  );
 };
 
 exports.deleteFormation = (req, res, next) => {

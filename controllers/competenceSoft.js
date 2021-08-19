@@ -1,7 +1,7 @@
 const CompetenceSoft = require("./../models/CompetenceSoft.js");
 
 exports.getCompetenceSoft = (req, res, next) => {
-  CompetenceSoft.find().then((competence) => {
+  CompetenceSoft.find({ userId: req.params.userId }).then((competence) => {
     res.status(200).json(competence);
   });
 };

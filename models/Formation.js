@@ -5,6 +5,7 @@ const formationSchema = mongoose.Schema({
   school: { type: String, required: true },
   description: { type: String, required: true },
   title: { type: String, required: true },
+  userId: { type: String, required: true },
 });
 
 module.exports = mongoose.model('Formation', formationSchema)

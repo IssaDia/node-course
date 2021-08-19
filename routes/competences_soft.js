@@ -5,7 +5,7 @@ const CompetenceSoftController = require("../controllers/competenceSoft");
 
 router.post("/", CompetenceSoftController.postCompetenceSoft);
 
-router.get("/", CompetenceSoftController.getCompetenceSoft);
+router.get("/:userId", CompetenceSoftController.getCompetenceSoft);
 
 router.delete("/:id", CompetenceSoftController.deleteCompetenceSoft);
 

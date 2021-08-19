@@ -1,7 +1,7 @@
 const CompetenceHard = require("./../models/CompetenceHard.js");
 
 exports.getCompetenceHard = (req, res, next) => {
-  CompetenceHard.find().then((competence) => {
+  CompetenceHard.find({ userId : req.params.userId}).then((competence) => {
     res.status(200).json(competence);
   });
 };

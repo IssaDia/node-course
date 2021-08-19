@@ -1,7 +1,7 @@
 const ExperienceNoDev = require("./../models/ExperienceNoDev.js");
 
 exports.getExperienceNoDev = (req, res, next) => {
-  ExperienceNoDev.find().then((experience) => {
+  ExperienceNoDev.find({ userId: req.params.userId }).then((experience) => {
     res.status(200).json(experience);
   });
 };

@@ -1,5 +1,7 @@
 const User = require("../models/User.js");
 const bcrypt = require("bcryptjs");
+const jwt = require('jsonwebtoken');
+const Header = require("./../models/Header.js")
 
 exports.signUp = async (req, res, next) => {
     await User
@@ -13,7 +15,19 @@ exports.signUp = async (req, res, next) => {
          mail: req.body.mail,
          password: bcrypt.hashSync(req.body.password, 8),
        });
-       user.save()
+       user.save().then((user)=> {
+          const header = new Header({
+            name: "Prénom et Nom",
+            job:"Intitulé du poste",
+            phone:"Number",
+            mail:"Mail",
+            portfolio: "Portfolio",
+            userId: user._id
+          });
+          header.save().then(()=> {
+            console.log('Header crée');
+          })
+       })
        res.status(200).send({ message: "Username is saved in database!" });
      }
     }))

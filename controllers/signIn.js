@@ -11,10 +11,38 @@ exports.signIn = async (req, res, next) => {
               user.password
             );
            if (!validPassword) {
-                res.status(400).send("Invalid Email or Password.");
+                res.status(400).send("Invalid Password.");
            } else {
-               res.status(200).send("User exists!")
+               const id = user.id;
+               const token = jwt.sign({id}, process.env.JWT_SECRET, {
+                   expiresIn:300,
+               })
+               res.status(200).json({ auth:true, token, id })
            }
+        }
+        else {
+             res.status(400).json({ auth: false, message:"no user exist " });
         }
     })
 };
+
+exports.isUserAuth = (req,res, next ) => {
+    res.status(200).send("Congrats! You're authenticated");
+    }
+
+
+exports.verifyJWT = (req,res, next) => {
+    const token = req.headers['x-access-token'];
+    if(!token) {
+        res.status(400).send('You don\'t have a token')
+    } else {
+        jwt.verify(token, process.env.JWT_SECRET,(err,decoded)=> {
+            if(err) {
+                res.json({auth:false, message:'You failed to authenticate'})
+            } else {
+                req.userId = decoded.id;
+                next();
+            }
+        });
+}
+}

@@ -6,6 +6,7 @@ const experienceDevSchema = mongoose.Schema({
   type: { type: String, required: true },
   stack: { type: String, required: true },
   date: { type: String, required: true },
+  userId: { type: String, required: true },
 });
 
 module.exports = mongoose.model("ExperienceDevs", experienceDevSchema);
